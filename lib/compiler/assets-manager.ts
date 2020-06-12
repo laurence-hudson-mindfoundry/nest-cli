@@ -79,7 +79,7 @@ export class AssetsManager {
 
         // prettier-ignore
         const watcher = chokidar
-          .watch(item.glob, { ignored: item.exclude })
+          .watch(item.glob, { ignored: item.exclude, persistent: option.watchAssetsMode || option.item.watchAssets })
           .on('add', (path: string) => this.actionOnFile({ ...option, path, action: 'change' }))
           .on('change', (path: string) => this.actionOnFile({ ...option, path, action: 'change' }))
           .on('unlink', (path: string) => this.actionOnFile({ ...option, path, action: 'unlink' }));
